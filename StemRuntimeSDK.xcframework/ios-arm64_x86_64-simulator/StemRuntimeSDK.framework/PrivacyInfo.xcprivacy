@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+    <!--
+        StemRuntimeSDK — Privacy Manifest
+        SDK version: 1.0.0  |  Effective: 2026-04-20
+
+        The SDK does not collect or transmit any data to its publisher.
+        Data declared by an integrating Application's StemJSON modules
+        is the responsibility of that Application, not of the SDK.
+    -->
+
+    <key>NSPrivacyTracking</key>
+    <false/>
+
+    <key>NSPrivacyTrackingDomains</key>
+    <array/>
+
+    <key>NSPrivacyCollectedDataTypes</key>
+    <array/>
+
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+
+        <!-- File timestamp APIs (lstat) used inside the App container. -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>0A2A.1</string>
+            </array>
+        </dict>
+
+        <!-- UserDefaults inside the App's own defaults domain. -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>CA92.1</string>
+            </array>
+        </dict>
+
+        <!--
+            System boot time via sysctl. Used only to measure
+            elapsed time between events that occur within the SDK's
+            own execution (e.g., to detect clock skew across SDK
+            operations). Reason 35F9.1 in Apple's approved list:
+            "Declare this reason to access the system boot time in
+            order to measure the amount of time that has elapsed
+            between events that occurred within the app".
+        -->
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategorySystemBootTime</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>35F9.1</string>
+            </array>
+        </dict>
+
+    </array>
+
+</dict>
+</plist>

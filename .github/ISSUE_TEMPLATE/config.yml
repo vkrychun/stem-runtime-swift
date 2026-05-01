@@ -1,0 +1,20 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a how-to question
+    url: https://github.com/vkrychun/stem-runtime-swift/discussions/categories/q-a
+    about: Integration and usage questions belong in Discussions → Q&A. Search first.
+  - name: Show what you built
+    url: https://github.com/vkrychun/stem-runtime-swift/discussions/categories/show-and-tell
+    about: Apps, demos, case studies, anything you'd like to share.
+  - name: Early-stage idea
+    url: https://github.com/vkrychun/stem-runtime-swift/discussions/categories/ideas
+    about: Not yet a formal feature request. Workshop it in Discussions → Ideas.
+  - name: Report a security vulnerability
+    url: https://github.com/vkrychun/stem-runtime-swift/security/advisories/new
+    about: Do NOT file a public issue for security vulnerabilities. Use private reporting.
+  - name: Question about the StemJSON DSL itself
+    url: https://github.com/vkrychun/StemJSON
+    about: Language-level questions (grammar, semantics, spec ambiguity) live in the spec repository.
+  - name: Commercial licensing / sales
+    url: mailto:vkrychun@stemjson.com
+    about: Pricing, enterprise licensing, trademark enquiries.

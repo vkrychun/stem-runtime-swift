@@ -1,0 +1,6 @@
+# Symbols from StemShieldC that must not appear in the framework's dynamic
+# export table. They are resolved internally during the static-link phase but
+# must be invisible to consumers (prevents fishhook / Frida targeting by name).
+_stemShieldDenyDebugger
+_stemShieldFridaDylibPresent
+_stemShieldIsDebuggerAttached

@@ -1,0 +1,8 @@
+.DS_Store
+.build/
+.swiftpm/
+*.xcuserstate
+*.xcuserdata/
+
+# Resolved is for the SDK's own dev; consumers resolve their own.
+Package.resolved

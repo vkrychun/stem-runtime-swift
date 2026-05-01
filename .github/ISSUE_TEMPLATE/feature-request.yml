@@ -1,0 +1,44 @@
+name: Feature request
+description: Request a new capability or enhancement in the SDK.
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feature requests for the SDK belong here. Requests for new **language** constructs (new components, new expression functions, new actions) need to land in the [StemJSON spec repository](https://github.com/vkrychun/StemJSON) first — the SDK implements what the spec defines.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What are you trying to build that the SDK currently makes difficult or impossible?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What capability should the SDK add? Public-API sketches welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: spec-impact
+    attributes:
+      label: Does this require a spec change?
+      description: If yes, is there an existing spec proposal, or should one be opened at https://github.com/vkrychun/StemJSON first?
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other ways to solve this, and why you prefer your proposal.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links to discussions, related issues, or real-world scenarios driving the need.
+    validations:
+      required: false

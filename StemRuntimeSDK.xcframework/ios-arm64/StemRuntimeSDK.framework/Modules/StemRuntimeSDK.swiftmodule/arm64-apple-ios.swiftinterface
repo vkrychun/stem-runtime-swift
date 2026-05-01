@@ -1,0 +1,466 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios18.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name StemRuntimeSDK
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3
+import AVFoundation
+import AVKit
+import AudioToolbox
+import Combine
+import Foundation
+import MapKit
+import OSLog
+import PDFKit
+import Photos
+import PhotosUI
+import Security
+import Swift
+import SwiftData
+import SwiftUI
+import UIKit
+import UniformTypeIdentifiers
+import UserNotifications
+import _AVKit_SwiftUI
+import _Concurrency
+import _MapKit_SwiftUI
+import _StringProcessing
+import _SwiftConcurrencyShims
+infix operator ~ : ComparisonPrecedence
+extension SwiftUICore.Color : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUICore.Font : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUICore.Font.Weight : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUICore.Font.Design : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUICore.Text.TruncationMode : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUI.ScrollIndicatorVisibility : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUICore.TextAlignment : @retroactive Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension SwiftUICore.EdgeInsets : @retroactive Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension UIKit.UIKeyboardType : @retroactive Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct AnyEncodable : Swift.Encodable, Swift.Sendable {
+  public init<T>(_ value: T) where T : Swift.Encodable, T : Swift.Sendable
+  public init(_ value: [Swift.String : Any])
+  public init(_ value: [Any])
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct AnyDecodable : Swift.Decodable, @unchecked Swift.Sendable {
+  public let value: Any
+  public init<T>(_ value: T?)
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class StemAuthInterceptor : Swift.Sendable {
+  final public func adaptRequest(_ request: Foundation.URLRequest) async -> Foundation.URLRequest
+  final public func retryDecision(for request: Foundation.URLRequest, error: any Swift.Error, retryCount: Swift.Int) async -> StemRuntimeSDK.StemRetryDecision
+  @objc deinit
+}
+extension StemRuntimeSDK.StemAuthInterceptor : Swift.Decodable {
+  convenience public init(from decoder: any Swift.Decoder) throws
+}
+public protocol StemRepoWritableContext : Swift.Sendable {
+  associatedtype Response : Swift.Sendable
+  init(_ input: Any?)
+}
+public protocol StemRepoReadableContext : Swift.Sendable {
+  associatedtype Response : Swift.Sendable
+  init(_ input: Any?)
+}
+public protocol StemRepoEntity : Swift.Sendable {
+  associatedtype Read : StemRuntimeSDK.StemRepoReadableContext
+  associatedtype Update : StemRuntimeSDK.StemRepoWritableContext
+  associatedtype Delete : StemRuntimeSDK.StemRepoReadableContext
+  associatedtype Create : StemRuntimeSDK.StemRepoWritableContext
+}
+public protocol StemRepository : StemRuntimeSDK.StemDependable {
+  associatedtype Entity : StemRuntimeSDK.StemRepoEntity
+  associatedtype Configuration : Swift.Decodable, Swift.Sendable
+  var id: Swift.String { get }
+  init(id: Swift.String, config: Self.Configuration) throws
+  func create(_ input: Self.Entity.Create) async throws(StemRuntimeSDK.StemActionError) -> Self.Entity.Create.Response
+  func read(_ input: Self.Entity.Read) async throws(StemRuntimeSDK.StemActionError) -> Self.Entity.Read.Response
+  func update(_ input: Self.Entity.Update) async throws(StemRuntimeSDK.StemActionError) -> Self.Entity.Update.Response
+  func delete(_ input: Self.Entity.Delete) async throws(StemRuntimeSDK.StemActionError) -> Self.Entity.Delete.Response
+}
+extension StemRuntimeSDK.StemRepository {
+  public static var kDocumentId: Swift.String {
+    get
+  }
+  public static var kDocument: Swift.String {
+    get
+  }
+}
+public protocol StemListenable {
+  func listen(_ params: StemRuntimeSDK.AnyDecodable) -> _Concurrency.AsyncThrowingStream<StemRuntimeSDK.AnyDecodable, any Swift.Error>
+}
+@_hasMissingDesignatedInitializers final public class StemRepositoryHelper {
+  public static func stampForCreate(_ json: inout [Swift.String : Any], now: Foundation.Date = Date())
+  public static func stampForUpdate(_ json: inout [Swift.String : Any], now: Foundation.Date = Date())
+  @objc deinit
+}
+public enum StemRepositoryType : Swift.String, StemRuntimeSDK.StemDependencyType {
+  case local, remote, secured, photos
+  public init?(rawValue: Swift.String)
+  public init?(stringValue: Swift.String)
+  public init?(intValue: Swift.Int)
+  public typealias RawValue = Swift.String
+  public var intValue: Swift.Int? {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+  public var stringValue: Swift.String {
+    get
+  }
+}
+public enum StemRetryDecision : Swift.Sendable {
+  case retry
+  case retryAfter(Foundation.TimeInterval)
+  case doNotRetry
+}
+public protocol StemService : StemRuntimeSDK.StemDependable {
+  @_Concurrency.MainActor func execute(_ input: Any?) async throws(StemRuntimeSDK.StemActionError) -> Any?
+}
+public enum StemServiceType : Swift.String, StemRuntimeSDK.StemDependencyType {
+  case audio
+  case push
+  case analytics
+  case biometrics
+  case camera
+  case contacts
+  case location
+  case deepLink
+  case calendar
+  case health
+  public init?(rawValue: Swift.String)
+  public init?(stringValue: Swift.String)
+  public init?(intValue: Swift.Int)
+  public typealias RawValue = Swift.String
+  public var intValue: Swift.Int? {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+  public var stringValue: Swift.String {
+    get
+  }
+}
+public protocol StemDependable : Swift.Sendable {
+  var id: Swift.String { get }
+}
+public protocol StemDependencyType : Swift.CodingKey, Swift.Hashable {
+}
+public typealias DecodableDependable = StemRuntimeSDK.StemDependable & Swift.Decodable
+public struct StemActionError : Swift.Error, @unchecked Swift.Sendable {
+  public let code: StemRuntimeSDK.StemErrorCode
+  public let message: Swift.String
+  public let underlyingError: (any Swift.Error)?
+  public init(_ code: StemRuntimeSDK.StemErrorCode, _ message: Swift.String? = nil, underlying: (any Swift.Error)? = nil)
+  public init(custom code: any StemRuntimeSDK.ErrorCodeType, _ message: Swift.String? = nil, underlying: (any Swift.Error)? = nil)
+  public init(httpStatusCode: Swift.Int, message: Swift.String? = nil, underlying: (any Swift.Error)? = nil)
+  public init(osStatus: Darwin.OSStatus, message: Swift.String? = nil, underlying: (any Swift.Error)? = nil)
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol ErrorCodeType : Swift.Sendable {
+  var rawValue: Swift.Int { get }
+  var defaultMessage: Swift.String { get }
+}
+public enum StemErrorCode : StemRuntimeSDK.ErrorCodeType, @unchecked Swift.Sendable {
+  case general(StemRuntimeSDK.GeneralError)
+  case network(StemRuntimeSDK.NetworkError)
+  case storage(StemRuntimeSDK.StorageError)
+  case security(StemRuntimeSDK.SecurityError)
+  case firestore(StemRuntimeSDK.FirestoreError)
+  case custom(any StemRuntimeSDK.ErrorCodeType)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public var defaultMessage: Swift.String {
+    get
+  }
+}
+public enum GeneralError : Swift.Int, StemRuntimeSDK.ErrorCodeType {
+  case unknown
+  case cancelled
+  case timeout
+  case decodingFailed
+  case encodingFailed
+  case missingData
+  case dependencyNotRegistered
+  public var defaultMessage: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum NetworkError : Swift.Int, StemRuntimeSDK.ErrorCodeType {
+  case invalidResponse
+  case noConnection
+  case invalidURL
+  case badRequest
+  case notAuthenticated
+  case notAuthorized
+  case notFound
+  case conflict
+  case internalServer
+  case serviceUnavailable
+  public var defaultMessage: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum StorageError : Swift.Int, StemRuntimeSDK.ErrorCodeType {
+  case documentExists
+  case documentNotFound
+  case noDocumentId
+  case invalidBody
+  case savingFailed
+  case deletionFailed
+  public var defaultMessage: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum SecurityError : Swift.Int, StemRuntimeSDK.ErrorCodeType {
+  case keychainAccess
+  case itemNotFound
+  case userCanceledAuth
+  case enclaveLocked
+  public var defaultMessage: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum FirestoreError : Swift.Int, StemRuntimeSDK.ErrorCodeType {
+  case permission
+  case aborted
+  case unavailable
+  public var defaultMessage: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension StemRuntimeSDK.StemErrorCode {
+  public static var unknown: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var cancelled: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var timeout: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var encodingFailed: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var decodingFailed: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var noConnection: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var invalidURL: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var badRequest: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var notAuthenticated: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var notAuthorized: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var notFound: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var invalidResponse: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var documentExists: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var noDocumentId: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var documentNotFound: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var invalidBody: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var keychainAccess: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var userCanceledAuth: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var firestorePermission: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+  public static var firestoreAborted: StemRuntimeSDK.StemErrorCode {
+    get
+  }
+}
+public protocol StemActionErrorConvertible : Swift.Sendable {
+  func asStemActionError() -> StemRuntimeSDK.StemActionError
+}
+extension StemRuntimeSDK.StemActionError {
+  public init(_ error: any Swift.Error, fallback: StemRuntimeSDK.StemErrorCode = .unknown)
+  public static func from(_ urlError: Foundation.URLError, underlying: any Swift.Error) -> StemRuntimeSDK.StemActionError
+}
+@dynamicMemberLookup public struct StemRender : @unchecked Swift.Sendable {
+  public subscript(dynamicMember path: Swift.String) -> Swift.String? {
+    get
+  }
+}
+extension StemRuntimeSDK.StemRender : SwiftUICore.View {
+  @_Concurrency.MainActor public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s14StemRuntimeSDK0A6RenderV4bodyQrvp", 0) __
+}
+extension StemRuntimeSDK.StemRender : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension StemRuntimeSDK.StemRender : Swift.Equatable {
+  public static func == (lhs: StemRuntimeSDK.StemRender, rhs: StemRuntimeSDK.StemRender) -> Swift.Bool
+}
+final public class StemRuntime : @unchecked Swift.Sendable {
+  public init()
+  @discardableResult
+  final public func register<T, D>(_ type: T.Type, as key: D) -> Self where T : StemRuntimeSDK.StemDependable, T : Swift.Decodable, D : StemRuntimeSDK.StemDependencyType
+  final public func validate(data: Foundation.Data, ignore: [StemRuntimeSDK.StemIssueSeverity] = []) async -> Swift.Result<StemRuntimeSDK.StemRender, StemRuntimeSDK.StemValidationReport>
+  final public func validate(contentsOf url: Foundation.URL, ignore: [StemRuntimeSDK.StemIssueSeverity] = []) async -> Swift.Result<StemRuntimeSDK.StemRender, StemRuntimeSDK.StemValidationReport>
+  @objc deinit
+}
+extension StemRuntimeSDK.StemRuntime : Swift.Equatable {
+  public static func == (lhs: StemRuntimeSDK.StemRuntime, rhs: StemRuntimeSDK.StemRuntime) -> Swift.Bool
+}
+extension StemRuntimeSDK.StemRuntime {
+  final public func stream(for dynamicKey: Swift.String, from render: StemRuntimeSDK.StemRender) -> _Concurrency.AsyncStream<Any?>
+  final public func subscribe(to key: Swift.String, in render: StemRuntimeSDK.StemRender, handler: @escaping @Sendable (Any?) -> Swift.Void) -> Combine.AnyCancellable
+  final public func kill(_ render: StemRuntimeSDK.StemRender) async
+  final public func trigger(event: Swift.String, data: Any)
+}
+extension StemRuntimeSDK.StemRuntime {
+  public struct Diagnostics : Swift.Sendable {
+    public struct Configuration : Swift.Sendable {
+      public var enabled: Swift.Bool
+      public var minLevel: StemRuntimeSDK.StemIssueSeverity
+      public static let defaultMinLevel: StemRuntimeSDK.StemIssueSeverity
+      public init(enabled: Swift.Bool = true, minLevel: StemRuntimeSDK.StemIssueSeverity = Configuration.defaultMinLevel)
+    }
+  }
+  convenience public init(_ config: StemRuntimeSDK.StemRuntime.Diagnostics.Configuration = .init())
+}
+extension StemRuntimeSDK.StemRuntime {
+  @discardableResult
+  final public func license(_ key: Swift.String) -> Self
+}
+extension StemRuntimeSDK.StemRuntime {
+  @discardableResult
+  final public func navigationEmbedded(_ embedded: Swift.Bool = true) -> Self
+}
+extension StemRuntimeSDK.StemRuntime {
+  @_Concurrency.MainActor final public func renderViewController(_ render: StemRuntimeSDK.StemRender) -> UIKit.UIViewController
+  @_Concurrency.MainActor final public func renderView(_ render: StemRuntimeSDK.StemRender) -> UIKit.UIView
+}
+extension StemRuntimeSDK.StemRuntime {
+  @discardableResult
+  final public func watermarkPosition(_ position: StemRuntimeSDK.StemWatermarkPosition) -> Self
+}
+public enum StemIssueSeverity : Swift.Int, Swift.Comparable, Swift.Sendable {
+  case bingo, info, note, warning, error, critical
+  public static func < (lhs: StemRuntimeSDK.StemIssueSeverity, rhs: StemRuntimeSDK.StemIssueSeverity) -> Swift.Bool
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct StemValidationReport : Swift.Sendable {
+}
+extension StemRuntimeSDK.StemValidationReport : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension StemRuntimeSDK.StemValidationReport : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum StemWatermarkPosition : Swift.Sendable {
+  case bottomTrailing
+  case bottomLeading
+  case topTrailing
+  case topLeading
+  public static func == (a: StemRuntimeSDK.StemWatermarkPosition, b: StemRuntimeSDK.StemWatermarkPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension StemRuntimeSDK.StemRepositoryType : Swift.RawRepresentable {}
+extension StemRuntimeSDK.StemServiceType : Swift.RawRepresentable {}
+extension StemRuntimeSDK.GeneralError : Swift.Equatable {}
+extension StemRuntimeSDK.GeneralError : Swift.Hashable {}
+extension StemRuntimeSDK.GeneralError : Swift.RawRepresentable {}
+extension StemRuntimeSDK.NetworkError : Swift.Equatable {}
+extension StemRuntimeSDK.NetworkError : Swift.Hashable {}
+extension StemRuntimeSDK.NetworkError : Swift.RawRepresentable {}
+extension StemRuntimeSDK.StorageError : Swift.Equatable {}
+extension StemRuntimeSDK.StorageError : Swift.Hashable {}
+extension StemRuntimeSDK.StorageError : Swift.RawRepresentable {}
+extension StemRuntimeSDK.SecurityError : Swift.Equatable {}
+extension StemRuntimeSDK.SecurityError : Swift.Hashable {}
+extension StemRuntimeSDK.SecurityError : Swift.RawRepresentable {}
+extension StemRuntimeSDK.FirestoreError : Swift.Equatable {}
+extension StemRuntimeSDK.FirestoreError : Swift.Hashable {}
+extension StemRuntimeSDK.FirestoreError : Swift.RawRepresentable {}
+extension StemRuntimeSDK.StemIssueSeverity : Swift.Hashable {}
+extension StemRuntimeSDK.StemIssueSeverity : Swift.RawRepresentable {}
+extension StemRuntimeSDK.StemWatermarkPosition : Swift.Equatable {}
+extension StemRuntimeSDK.StemWatermarkPosition : Swift.Hashable {}

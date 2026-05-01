@@ -1,0 +1,90 @@
+name: Bug report
+description: The SDK validates, renders, or behaves incorrectly on a reproducible case.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **For security vulnerabilities:** do not use this template — use [private vulnerability reporting](https://github.com/vkrychun/stem-runtime-swift/security/advisories/new) instead.
+  - type: input
+    id: sdk-version
+    attributes:
+      label: StemRuntimeSDK version
+      description: "The version you resolved via SPM (e.g., 1.0.0)."
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: ios-version
+    attributes:
+      label: iOS / iPadOS version
+      description: "Device OS version where the issue reproduces."
+      placeholder: "18.0"
+    validations:
+      required: true
+  - type: input
+    id: xcode-version
+    attributes:
+      label: Xcode version
+      placeholder: "26.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Environment
+      options:
+        - Physical device
+        - Simulator
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences — what happens and what should happen.
+    validations:
+      required: true
+  - type: textarea
+    id: payload
+    attributes:
+      label: Minimal StemJSON payload
+      description: The smallest payload that reproduces the issue. Attach as a JSON code block or a gist link. Remove any secrets (API keys, user data) first.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: What you did, in order. Include the host-app code if the integration is non-trivial.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What actually happens. Include the validation report (`StemValidationReport.description`) if the issue surfaces there, and any OSLog output under `com.stem.runtime.sdk`.
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround (if known)
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Screenshots, video, stack traces, anything else that helps.
+    validations:
+      required: false
