@@ -32,7 +32,7 @@ and "you" refers to that entity.
 1.4 "Commercial License" — a paid license tier that removes the
     on-device watermark and grants any additional rights set out in
     the applicable order form or invoice. Current pricing
-    information is published at stemjson.com/sdk/pricing for
+    information is published at stemjson.com/stemruntime/ for
     reference only; the substantive terms of each Commercial License
     are those set out in this Agreement together with the order form
     or invoice issued at purchase.
@@ -161,9 +161,9 @@ You shall not:
     THIRD_PARTY_LICENSES.md. Those components remain governed by
     their own licenses; nothing in this Agreement overrides them.
 
-5.4 "StemJSON", "StemRuntimeSDK", "StemRuntime", and the StemJSON
-    logo are trademarks of Licensor. Use of these marks is governed
-    by the StemJSON Trademark Policy at github.com/vkrychun/StemJSON.
+5.4 Use of the StemJSON™, StemRuntimeSDK™, StemRuntime™, and
+    StemJSON logo marks is governed by the StemJSON Trademark Policy
+    at github.com/vkrychun/StemJSON.
 
 5.5 Licensor is the originator of the StemJSON specification and
     the inventor of the declarative concepts embodied in it. The
@@ -361,5 +361,5 @@ certification of your Application.
 
 Vasyl Krychun
 Email: vkrychun@stemjson.com
-Web:   https://stemjson.com/sdk
+Web:   https://stemjson.com/stemruntime/
 Repo:  https://github.com/vkrychun/stem-runtime-swift
