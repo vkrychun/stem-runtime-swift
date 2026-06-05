@@ -1,6 +1,6 @@
 # StemRuntimeSDK
 
-Your AI can now ship complete native iOS features, not just code snippets. **StemJSON** is a declarative language describing a full feature — screens, interactions, data, navigation — and **StemRuntimeSDK** runs it as native SwiftUI on-device. AI authors the feature; users get native iOS.
+Your AI can now produce complete native iOS UI/UX, not just code snippets. **StemJSON** is a declarative language describing full UI/UX — screens, interactions, data, navigation — and **StemRuntimeSDK** renders it as native SwiftUI on-device. AI authors the UI/UX; users get native iOS.
 
 ![iOS](https://img.shields.io/badge/iOS-18.0%2B-blue?logo=apple)
 ![Swift](https://img.shields.io/badge/Swift-6.0-orange?logo=swift)
@@ -395,7 +395,7 @@ StemJSON modules are a declarative tree: every component has a `type`, optional 
   "context": { "_label": "Email", "_text": "${email}" } }
 ```
 
-For the full component catalogue, value syntax, style options, and action types see the [**StemJSON v1.0 Specification**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0.md).
+For the full component catalogue, value syntax, style options, and action types see the [**StemJSON v1.0 Specification**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0.md). For LLM-prompt use, the [**condensed LLM reference**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0-ai.md) is smaller and denser.
 
 ### Schema versioning
 

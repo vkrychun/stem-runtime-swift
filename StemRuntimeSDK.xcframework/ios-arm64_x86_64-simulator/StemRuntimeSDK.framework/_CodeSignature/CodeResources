@@ -6,11 +6,11 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		jtAVz3oD2Xy3Qo46r6HQ2lk5ifQ=
+		dIIKiZiQFWn85QL7vFnsaCW8CkM=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		qIH+JyCepBbbLCCxd91pu5uHoqI=
+		RWRzcdwNwe2dkoZ6qXz9oRr1KWQ=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		oDjdfiH2FCdCq2kPSPlJUP5jJYU=
+		IsvlD5X0SnManV8xPrj8KmFLdrM=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		qIH+JyCepBbbLCCxd91pu5uHoqI=
+		RWRzcdwNwe2dkoZ6qXz9oRr1KWQ=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -46,11 +46,15 @@
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ysaXbYgz4eLUuzOAVEJFcb/HHdQ=
+		nvLDxoXbLDviMC94mG+MGtoaEeI=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		pqH92aHuhvrMOG1DGgheSacDfy4=
 		</data>
 		<key>README.md</key>
 		<data>
-		afNtcPDEzIItT1r362APZnmmL9U=
+		aJiu74LGtmYBy/ozVNkwD8RrmcA=
 		</data>
 		<key>unexported_symbols.txt</key>
 		<data>
@@ -63,7 +67,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7TVj7pts9M2bqB/C9+jR8e+lQY83oVNDC7lujzaml6k=
+			VS0xHnKUT4rS54B/nYIfNtmlf9j2Ujkue8eFASr4FpU=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -91,14 +95,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+nNR1ihsQIIgT7a+o7EZL9mZzzVlGUQm9tpQEF9KO0g=
+			5Y5vGDmqbXvMXxl+uuV3pNC2Af0lJ/Y2EYj6HVo43l4=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7TVj7pts9M2bqB/C9+jR8e+lQY83oVNDC7lujzaml6k=
+			VS0xHnKUT4rS54B/nYIfNtmlf9j2Ujkue8eFASr4FpU=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -126,14 +130,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sbu33TmWjthTlgWGw6zcPvzCVPxtFT6vzI0WTmg/UqY=
+			rR2x/+NPBhq1cMovqBQrCWHFGyXc6vKpVPVzo/32sWo=
+			</data>
+		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			cxwH6aniKG/dqSlUsvQh64I3FgPnhobiGdJpeb+URoA=
 			</data>
 		</dict>
 		<key>README.md</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			630zNhO2PuQuubQrYYDPgbUy1mNa+LHjR5I7S9CT9Uo=
+			sASJDGPwYpGkO2Ck96g0W7Z+gwIh6LFwwpNQVzYvwhU=
 			</data>
 		</dict>
 		<key>unexported_symbols.txt</key>
