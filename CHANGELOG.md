@@ -6,6 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 
 ---
 
+## [1.0.2] — 2026-06-12
+
+### Changed
+- Component `type` is now resolved case-insensitively, matching [StemJSON v1.0.2](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0.md) — the canonical form is lowercase. Existing modules are unaffected.
+
+---
+
 ## [1.0.1] — 2026-06-01
 
 ### Added
@@ -29,5 +36,6 @@ Initial release. Implements the [StemJSON v1.0 specification](https://github.com
 
 ---
 
+[1.0.2]: https://github.com/vkrychun/stem-runtime-swift/releases/tag/v1.0.2
 [1.0.1]: https://github.com/vkrychun/stem-runtime-swift/releases/tag/v1.0.1
 [1.0.0]: https://github.com/vkrychun/stem-runtime-swift/releases/tag/v1.0.0
