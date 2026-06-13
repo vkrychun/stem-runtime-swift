@@ -51,7 +51,7 @@ Add the package in Xcode via **File › Add Package Dependencies**, or add it to
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/vkrychun/stem-runtime-swift.git", from: "1.0.2")
+    .package(url: "https://github.com/vkrychun/stem-runtime-swift.git", from: "1.1.0")
 ]
 ```
 

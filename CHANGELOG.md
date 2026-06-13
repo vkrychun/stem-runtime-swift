@@ -6,6 +6,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 
 ---
 
+## [1.1.0] — Unreleased
+
+### Added
+- `switch(test1, value1, …, default)` expression function — a flat multi-way conditional matching [StemJSON v1.1.0](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md) §8.6. Lazy/short-circuit like the ternary (only the matched value is evaluated); odd arity with a mandatory default. Removes the deeply nested ternaries that cause unbalanced-paren errors in generated modules. A module using `switch()` should declare `"version": "1.1"`.
+
+### Clarified
+- Chained ternaries (`a ? b : c ? d : e`) require no parentheses — already supported, now covered by tests.
+
+---
+
 ## [1.0.2] — 2026-06-12
 
 ### Changed
