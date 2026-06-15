@@ -14,6 +14,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 ### Clarified
 - Chained ternaries (`a ? b : c ? d : e`) require no parentheses — already supported, now covered by tests.
 
+### Fixed
+- Repeating `interval` timers now update on every tick. A countdown whose tick reads state — e.g. `{{ ${seconds} - 1 }}` — previously could stay frozen; it now reflects the latest value each tick.
+
 ---
 
 ## [1.0.2] — 2026-06-12
