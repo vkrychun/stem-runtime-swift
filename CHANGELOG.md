@@ -10,12 +10,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 
 ### Added
 - `switch(test1, value1, …, default)` expression function — a flat multi-way conditional matching [StemJSON v1.1.0](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md) §8.6. Lazy/short-circuit like the ternary (only the matched value is evaluated); odd arity with a mandatory default. Removes the deeply nested ternaries that cause unbalanced-paren errors in generated modules. A module using `switch()` should declare `"version": "1.1"`.
+- `random()` / `random(min, max)` and `range(n)` / `range(start, end)` expression functions for declarative randomization ([StemJSON v1.1.0](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md) §8.6.1). `map(range(n), random(a, b))` generates fresh structured data (grids/boards) so games/puzzles regenerate on reset without hardcoding. `random()` is nondeterministic — resolve it once in an action/lifecycle value (frozen into state), never in a render binding. Calling either function with the wrong number of arguments is flagged by validation (diagnostic V015).
 
 ### Clarified
 - Chained ternaries (`a ? b : c ? d : e`) require no parentheses — already supported, now covered by tests.
 
 ### Fixed
 - Repeating `interval` timers now update on every tick. A countdown whose tick reads state — e.g. `{{ ${seconds} - 1 }}` — previously could stay frozen; it now reflects the latest value each tick.
+- A malformed `onChange` / `onCustom` event written in its object form (`{ "observed" | "name", "actions" }`) now reports a precise error naming the missing required field, instead of a misleading "expected array, found object" message. The bare action-array form remains accepted.
 
 ---
 
