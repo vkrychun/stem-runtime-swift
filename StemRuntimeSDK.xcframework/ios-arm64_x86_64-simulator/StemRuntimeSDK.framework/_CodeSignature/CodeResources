@@ -8,45 +8,29 @@
 		<data>
 		dIIKiZiQFWn85QL7vFnsaCW8CkM=
 		</data>
-		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
-		<data>
-		RWRzcdwNwe2dkoZ6qXz9oRr1KWQ=
-		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		4j/ZMmKlSqJ7M7sMLc7GiDXlrf8=
+		D1Ih9XpB81Ms+56rpiVdS5Qx+4U=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		fWjnV2hnJovFpe6JJ1EM68yVO4s=
+		atWgXwbu7A5syxp2RwHWhf119/8=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		4j/ZMmKlSqJ7M7sMLc7GiDXlrf8=
-		</data>
-		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
-		<data>
-		it7T4m0pf1+Sf/BvZ2eERTtX3EQ=
-		</data>
-		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
-		<data>
-		RWRzcdwNwe2dkoZ6qXz9oRr1KWQ=
+		D1Ih9XpB81Ms+56rpiVdS5Qx+4U=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Let0czohN5n+55ya97tCG5mkyg4=
+		mxMXWAAALkUVwlJju8ZOseLYgms=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		BDYzfsgxhf3lD3fXKUIRaiUzyWo=
+		E/5lQ8mbx7j8QE4mWy/CBveDvCk=
 		</data>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Let0czohN5n+55ya97tCG5mkyg4=
-		</data>
-		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
-		<data>
-		1E6oziPKHgFmq4eIUPficq6wSfc=
+		mxMXWAAALkUVwlJju8ZOseLYgms=
 		</data>
 		<key>PrivacyInfo.xcprivacy</key>
 		<data>
@@ -56,81 +40,49 @@
 		<data>
 		aJiu74LGtmYBy/ozVNkwD8RrmcA=
 		</data>
-		<key>unexported_symbols.txt</key>
-		<data>
-		yXRUrPZL8CZTUMxQvxAFs6bPdIQ=
-		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VS0xHnKUT4rS54B/nYIfNtmlf9j2Ujkue8eFASr4FpU=
-			</data>
-		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7VHoIPq2zQrZfN3xH69Hkeqtlx2kk6O0qvqeswD5c6s=
+			DtE5rwtuS7RSOeJgjKPcJAQ6EF26dMLd0aKqLCQFKTc=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YkknkpvxGRmP9E/xbIEHdlprhVFQBgaKxdwlfY+XsCU=
+			yzwXZ630/UDsPvB6v+7YwL9VVdVasQmUZkZ0rz/txKI=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7VHoIPq2zQrZfN3xH69Hkeqtlx2kk6O0qvqeswD5c6s=
-			</data>
-		</dict>
-		<key>Modules/StemRuntimeSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			QUxLvBw0eMZcP/eHOcB08lm0JJstfBoGDVcelZt7Y58=
-			</data>
-		</dict>
-		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VS0xHnKUT4rS54B/nYIfNtmlf9j2Ujkue8eFASr4FpU=
+			DtE5rwtuS7RSOeJgjKPcJAQ6EF26dMLd0aKqLCQFKTc=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pw2v52FVl36qi9vYNk5wbVyRE1vUJt6OhOrr7yJb9oE=
+			Hd/B4QDSL957XdGqQvfNzhWkvOnGTvioISliU3TuFGE=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iz2Mu57/7wKpEgdJcCmcj6FxDw7WLLtjgSOcpEdLJ34=
+			+iW4K24S+OmFM6AqgLtHnimLmiogcK0LXjxalS5khSw=
 			</data>
 		</dict>
 		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pw2v52FVl36qi9vYNk5wbVyRE1vUJt6OhOrr7yJb9oE=
-			</data>
-		</dict>
-		<key>Modules/StemRuntimeSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			taisRLuJJrdDkF9sCMUj7amZCALW4KHj+kGi4Rd7XlY=
+			Hd/B4QDSL957XdGqQvfNzhWkvOnGTvioISliU3TuFGE=
 			</data>
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
@@ -145,13 +97,6 @@
 			<key>hash2</key>
 			<data>
 			sASJDGPwYpGkO2Ck96g0W7Z+gwIh6LFwwpNQVzYvwhU=
-			</data>
-		</dict>
-		<key>unexported_symbols.txt</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			JS2VLWB1o1n/QX4CGXegBs/sV7+DFKDVgsdxc+kKe0A=
 			</data>
 		</dict>
 	</dict>

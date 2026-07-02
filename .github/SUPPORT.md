@@ -4,7 +4,7 @@ Use the channel that matches your need.
 
 ## 🛒 Commercial licensing and sales
 
-- **Pricing:** [stemjson.com/sdk/pricing](https://stemjson.com/sdk/pricing)
+- **Pricing:** [stemjson.com/stemruntime/#pricing](https://stemjson.com/stemruntime/#pricing)
 - **Enterprise / custom licensing / purchase enquiries:** vkrychun@stemjson.com
 - **License terms:** [LICENSE](LICENSE)
 
@@ -36,8 +36,8 @@ Private channel only. See [SECURITY.md](SECURITY.md).
 The runtime SDK is separate from the StemJSON DSL. Language-level questions (how a construct works, ambiguity in the spec, proposals for v1.1) belong in the spec repository:
 
 - **Spec repository:** [vkrychun/StemJSON](https://github.com/vkrychun/StemJSON)
-- **Full spec:** [spec/v1.0.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0.md)
-- **LLM-optimised spec:** [spec/v1.0-ai.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0-ai.md)
+- **Full spec:** [spec/v1.1.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md)
+- **LLM-optimised spec:** [spec/v1.1-ai.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1-ai.md)
 
 ## 🎬 Reference demos
 

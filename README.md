@@ -51,7 +51,7 @@ Add the package in Xcode via **File › Add Package Dependencies**, or add it to
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/vkrychun/stem-runtime-swift.git", from: "1.0.2")
+    .package(url: "https://github.com/vkrychun/stem-runtime-swift.git", from: "1.1.0")
 ]
 ```
 
@@ -106,7 +106,7 @@ my_feature.zip
 - A zip without `main.json` at the root fails validation.
 - `.strings` files under `localization/` back `l10n://` sources and the `localize(key, fallback)` expression function. The runtime falls back to the host app bundle if a key is missing.
 
-See [StemJSON Specification §14](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0.md#14-package--distribution) for the full package format.
+See [StemJSON Specification §14](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md#14-package--distribution) for the full package format.
 
 ---
 
@@ -135,11 +135,13 @@ let runtime = StemRuntime()
 ### Validation
 
 ```swift
-func validate(data: Data, ignore: [StemIssueSeverity] = []) async -> Result<StemRender, StemValidationReport>
-func validate(contentsOf url: URL, ignore: [StemIssueSeverity] = []) async -> Result<StemRender, StemValidationReport>
+func validate(data: Data, namespace: String? = nil, ignore: [StemIssueSeverity] = []) async -> Result<StemRender, StemValidationReport>
+func validate(contentsOf url: URL, namespace: String? = nil, ignore: [StemIssueSeverity] = []) async -> Result<StemRender, StemValidationReport>
 ```
 
 `ignore` suppresses non-critical severity levels from causing a `.failure` (e.g. `[.warning, .note]`).
+
+`namespace` is an optional per-module storage namespace. When supplied, the module's on-device data (its local database and secured items) is isolated to that namespace, so two modules that declare the same storage ids - or two installs of the same tool - keep separate data. Omit it for the previous shared behavior; pass a stable id per install (e.g. a `UUID`) to isolate.
 
 `StemValidationReport` conforms to `LocalizedError` and `CustomStringConvertible`. Its `description` is a human- and machine-readable report:
 
@@ -168,6 +170,36 @@ let icon:  String? = render.icon
 ```
 
 Being `Identifiable` and `Equatable` makes it safe to use in `ForEach` and SwiftUI diffing.
+
+---
+
+## Security Audit
+
+`audit(data:policy:)` statically inspects a module **without instantiating it** — no timers,
+network requests, or listeners start — and reports the capabilities the module declares, so you
+can decide whether to load content from an untrusted source (for example, a module shared by
+another user).
+
+```swift
+let result = await runtime.audit(data: jsonData)
+switch result {
+case .success(let report):
+    if let highest = report.highestSeverity, highest >= .high {
+        // Prompt the user, or refuse to load.
+    }
+    for finding in report.findings {
+        print(finding.severity, finding.category, finding.message)
+    }
+    // report.manifest summarises endpoints, services, storage, timers, and subscriptions.
+case .failure(let report):
+    print("Could not decode: \(report)")
+}
+```
+
+The SDK reports capabilities and an inherent severity; **your app owns** the decision to allow,
+prompt, or block. Tune what is acceptable with `StemSecurityPolicy` — endpoint and service
+allow-lists, a minimum timer interval, a component-count cap, and a `trustedSource` shortcut that
+returns the capability manifest without raising findings (for first-party modules you already trust).
 
 ---
 
@@ -397,7 +429,7 @@ StemJSON modules are a declarative tree: every component has a `type`, optional 
   "context": { "_label": "Email", "_text": "${email}" } }
 ```
 
-For the full component catalogue, value syntax, style options, and action types see the [**StemJSON v1.0 Specification**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.0.md).
+For the full component catalogue, value syntax, style options, and action types see the [**StemJSON v1.1 Specification**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md).
 
 ### Schema versioning
 
@@ -483,6 +515,6 @@ itself — originated and authored by Vasyl Krychun — is governed by
 the OWFa 1.0; see the
 [StemJSON spec repo](https://github.com/vkrychun/StemJSON).
 
-Pricing: [stemjson.com/sdk/pricing](https://stemjson.com/sdk/pricing).
+Pricing: [stemjson.com/stemruntime/#pricing](https://stemjson.com/stemruntime/#pricing).
 Commercial enquiries:
 [vkrychun@stemjson.com](mailto:vkrychun@stemjson.com).

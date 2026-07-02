@@ -91,6 +91,7 @@ public protocol StemRepository : StemRuntimeSDK.StemDependable {
   associatedtype Entity : StemRuntimeSDK.StemRepoEntity
   associatedtype Configuration : Swift.Decodable, Swift.Sendable
   var id: Swift.String { get }
+  var dependencyType: any StemRuntimeSDK.StemDependencyType { get }
   init(id: Swift.String, config: Self.Configuration) throws
   func create(_ input: Self.Entity.Create) async throws(StemRuntimeSDK.StemActionError) -> Self.Entity.Create.Response
   func read(_ input: Self.Entity.Read) async throws(StemRuntimeSDK.StemActionError) -> Self.Entity.Read.Response
@@ -135,6 +136,7 @@ public enum StemRetryDecision : Swift.Sendable {
   case doNotRetry
 }
 public protocol StemService : StemRuntimeSDK.StemDependable {
+  var dependencyType: any StemRuntimeSDK.StemDependencyType { get }
   @_Concurrency.MainActor func execute(_ input: Any?) async throws(StemRuntimeSDK.StemActionError) -> Any?
 }
 public enum StemServiceType : Swift.String, StemRuntimeSDK.StemDependencyType {
@@ -371,8 +373,8 @@ final public class StemRuntime : @unchecked Swift.Sendable {
   public init()
   @discardableResult
   final public func register<T, D>(_ type: T.Type, as key: D) -> Self where T : StemRuntimeSDK.StemDependable, T : Swift.Decodable, D : StemRuntimeSDK.StemDependencyType
-  final public func validate(data: Foundation.Data, ignore: [StemRuntimeSDK.StemIssueSeverity] = []) async -> Swift.Result<StemRuntimeSDK.StemRender, StemRuntimeSDK.StemValidationReport>
-  final public func validate(contentsOf url: Foundation.URL, ignore: [StemRuntimeSDK.StemIssueSeverity] = []) async -> Swift.Result<StemRuntimeSDK.StemRender, StemRuntimeSDK.StemValidationReport>
+  final public func validate(data: Foundation.Data, namespace: Swift.String? = nil, ignore: [StemRuntimeSDK.StemIssueSeverity] = []) async -> Swift.Result<StemRuntimeSDK.StemRender, StemRuntimeSDK.StemValidationReport>
+  final public func validate(contentsOf url: Foundation.URL, namespace: Swift.String? = nil, ignore: [StemRuntimeSDK.StemIssueSeverity] = []) async -> Swift.Result<StemRuntimeSDK.StemRender, StemRuntimeSDK.StemValidationReport>
   @objc deinit
 }
 extension StemRuntimeSDK.StemRuntime : Swift.Equatable {
@@ -404,12 +406,63 @@ extension StemRuntimeSDK.StemRuntime {
   final public func navigationEmbedded(_ embedded: Swift.Bool = true) -> Self
 }
 extension StemRuntimeSDK.StemRuntime {
+  final public func audit(data: Foundation.Data, policy: StemRuntimeSDK.StemSecurityPolicy = .init()) async -> Swift.Result<StemRuntimeSDK.StemSecurityReport, StemRuntimeSDK.StemValidationReport>
+}
+extension StemRuntimeSDK.StemRuntime {
   @_Concurrency.MainActor final public func renderViewController(_ render: StemRuntimeSDK.StemRender) -> UIKit.UIViewController
   @_Concurrency.MainActor final public func renderView(_ render: StemRuntimeSDK.StemRender) -> UIKit.UIView
 }
 extension StemRuntimeSDK.StemRuntime {
   @discardableResult
   final public func watermarkPosition(_ position: StemRuntimeSDK.StemWatermarkPosition) -> Self
+}
+public enum StemSecuritySeverity : Swift.Int, Swift.Comparable, Swift.Sendable {
+  case info, low, medium, high, critical
+  public static func < (l: StemRuntimeSDK.StemSecuritySeverity, r: StemRuntimeSDK.StemSecuritySeverity) -> Swift.Bool
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum StemCapabilityCategory : Swift.String, Swift.Sendable {
+  case network, storage, service, timer, subscription, navigation, dynamicCapability, structural
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct StemSecurityFinding : Swift.Sendable {
+  public let code: Swift.String
+  public let severity: StemRuntimeSDK.StemSecuritySeverity
+  public let category: StemRuntimeSDK.StemCapabilityCategory
+  public let message: Swift.String
+  public let location: Swift.String
+  public let evidence: [Swift.String : Swift.String]
+}
+public struct StemCapabilityManifest : Swift.Sendable {
+  public let networkEndpoints: [Swift.String]
+  public let dynamicEndpoints: Swift.Bool
+  public let services: [Swift.String]
+  public let storageKinds: [Swift.String]
+  public let timerIntervals: [Swift.Double]
+  public let subscriptions: [Swift.String]
+}
+public struct StemSecurityPolicy : Swift.Sendable {
+  public var allowedEndpoints: [Swift.String]
+  public var allowedServices: Swift.Set<Swift.String>
+  public var minIntervalSeconds: Swift.Double
+  public var maxComponents: Swift.Int?
+  public var trustedSource: Swift.Bool
+  public init(allowedEndpoints: [Swift.String] = [], allowedServices: Swift.Set<Swift.String> = [], minIntervalSeconds: Swift.Double = 0.05, maxComponents: Swift.Int? = nil, trustedSource: Swift.Bool = false)
+}
+public struct StemSecurityReport : Swift.Sendable {
+  public let findings: [StemRuntimeSDK.StemSecurityFinding]
+  public let manifest: StemRuntimeSDK.StemCapabilityManifest
+  public var highestSeverity: StemRuntimeSDK.StemSecuritySeverity? {
+    get
+  }
 }
 public enum StemIssueSeverity : Swift.Int, Swift.Comparable, Swift.Sendable {
   case bingo, info, note, warning, error, critical
@@ -460,6 +513,11 @@ extension StemRuntimeSDK.SecurityError : Swift.RawRepresentable {}
 extension StemRuntimeSDK.FirestoreError : Swift.Equatable {}
 extension StemRuntimeSDK.FirestoreError : Swift.Hashable {}
 extension StemRuntimeSDK.FirestoreError : Swift.RawRepresentable {}
+extension StemRuntimeSDK.StemSecuritySeverity : Swift.Hashable {}
+extension StemRuntimeSDK.StemSecuritySeverity : Swift.RawRepresentable {}
+extension StemRuntimeSDK.StemCapabilityCategory : Swift.Equatable {}
+extension StemRuntimeSDK.StemCapabilityCategory : Swift.Hashable {}
+extension StemRuntimeSDK.StemCapabilityCategory : Swift.RawRepresentable {}
 extension StemRuntimeSDK.StemIssueSeverity : Swift.Hashable {}
 extension StemRuntimeSDK.StemIssueSeverity : Swift.RawRepresentable {}
 extension StemRuntimeSDK.StemWatermarkPosition : Swift.Equatable {}
