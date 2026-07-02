@@ -314,6 +314,9 @@ final class ProductRepository: StemRepository {
     let id: String
     let config: Configuration
 
+    /// The key this repository is registered under — used by `audit` to name the capability.
+    var dependencyType: any StemDependencyType { StemRepositoryType.remote }
+
     init(id: String, config: Configuration) throws {
         self.id = id
         self.config = config
@@ -347,6 +350,9 @@ Conform to `StemService` and implement `execute`:
 ```swift
 final class AnalyticsService: StemService, Decodable {
     let id: String
+
+    /// The key this service is registered under — used by `audit` to name the capability.
+    var dependencyType: any StemDependencyType { StemServiceType.analytics }
 
     @MainActor
     func execute(_ input: Any?) async throws(StemActionError) -> Any? {

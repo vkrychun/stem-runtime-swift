@@ -16,6 +16,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 - `validate(data:namespace:)` / `validate(contentsOf:namespace:)` — an optional per-module storage namespace. When supplied, a module's on-device data (its local database and secured items) is isolated to that namespace, so two modules that declare the same storage ids - or two installs of the same tool - keep separate data. Omit it for the previous shared behavior.
 - Collection functions `setAt`, `removeAt`, `insertAt`, `keys`, `values`, and `removeKey` — matching [StemJSON v1.1.0](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md) §8.6. Edit an array element by position (`setAt` / `removeAt` / `insertAt`; negative indices count from the tail) and inspect or prune dictionaries (`keys` sorted, `values` key-aligned, `removeKey`); all return a new value. Positional editing makes piece-moving board games and index-addressed grids work directly.
 
+### Changed
+- **Migration required for custom dependencies:** `StemRepository` and `StemService` conformers must now declare the registry key they are registered under — add `var dependencyType: any StemDependencyType { <your key> }` (e.g. `StemRepositoryType.remote`, or your custom `StemDependencyType`). The static security audit uses it to name the capability. Built-in dependencies are unaffected.
+
 ### Clarified
 - Chained ternaries (`a ? b : c ? d : e`) require no parentheses — already supported, now covered by tests.
 
