@@ -85,6 +85,8 @@ struct DashboardView: View {
 
 Three steps in practice: create a runtime, validate a JSON module (file or raw `Data`), embed the returned render — `StemRender` conforms to `View`. The SDK accepts either a single `.json` file or a zip-packaged module and picks the loader from the byte stream — no flag required.
 
+You supply the module. Ready ones and runnable SwiftUI and UIKit hosts are in [`stem-examples-swift`](https://github.com/vkrychun/stem-examples-swift) — `StemQuickStart` is exactly this snippet as a working project with `hello.json`.
+
 ---
 
 ## Zip-Packaged Modules
