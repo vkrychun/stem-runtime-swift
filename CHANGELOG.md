@@ -6,7 +6,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 
 ---
 
-## [1.2.0] — TBD
+## [1.2.0] — 2026-10-08
 
 Implements the [StemJSON v1.2 specification](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.2.md).
 
