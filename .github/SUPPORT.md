@@ -33,11 +33,11 @@ Private channel only. See [SECURITY.md](SECURITY.md).
 
 ## 📖 Questions about the StemJSON language itself
 
-The runtime SDK is separate from the StemJSON DSL. Language-level questions (how a construct works, ambiguity in the spec, proposals for v1.1) belong in the spec repository:
+The runtime SDK is separate from the StemJSON DSL. Language-level questions (how a construct works, ambiguity in the spec, proposals for v1.3) belong in the spec repository:
 
 - **Spec repository:** [vkrychun/StemJSON](https://github.com/vkrychun/StemJSON)
-- **Full spec:** [spec/v1.1.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md)
-- **LLM-optimised spec:** [spec/v1.1-ai.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1-ai.md)
+- **Full spec:** [spec/v1.2.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.2.md)
+- **LLM-optimised spec:** [spec/v1.2-ai.md](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.2-ai.md)
 
 ## 🎬 Reference demos
 

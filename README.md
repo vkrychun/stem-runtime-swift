@@ -51,7 +51,7 @@ Add the package in Xcode via **File › Add Package Dependencies**, or add it to
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/vkrychun/stem-runtime-swift.git", from: "1.1.0")
+    .package(url: "https://github.com/vkrychun/stem-runtime-swift.git", from: "1.2.0")
 ]
 ```
 
@@ -108,7 +108,7 @@ my_feature.zip
 - A zip without `main.json` at the root fails validation.
 - `.strings` files under `localization/` back `l10n://` sources and the `localize(key, fallback)` expression function. The runtime falls back to the host app bundle if a key is missing.
 
-See [StemJSON Specification §14](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md#14-package--distribution) for the full package format.
+See [StemJSON Specification §14](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.2.md#14-package--distribution) for the full package format.
 
 ---
 
@@ -134,6 +134,8 @@ let runtime = StemRuntime()
     .register(MyRemoteRepository.self, as: StemRepositoryType.remote)
 ```
 
+`StemRuntime().compatibility(.strict)` makes validation refuse a module written for a newer spec revision with a single error; the default, `.degrade`, renders it with warnings. `StemRuntime.supportedSpec` reports the spec revision the runtime implements.
+
 ### Validation
 
 ```swift
@@ -145,11 +147,11 @@ func validate(contentsOf url: URL, namespace: String? = nil, ignore: [StemIssueS
 
 `namespace` is an optional per-module storage namespace. When supplied, the module's on-device data (its local database and secured items) is isolated to that namespace, so two modules that declare the same storage ids - or two installs of the same tool - keep separate data. Omit it for the previous shared behavior; pass a stable id per install (e.g. a `UUID`) to isolate.
 
-`StemValidationReport` conforms to `LocalizedError` and `CustomStringConvertible`. Its `description` is a human- and machine-readable report:
+`StemValidationReport` conforms to `LocalizedError` and `CustomStringConvertible`. Its `issues` array lists each finding with its `code`, `severity`, `path` and `message`, and its `description` renders them as a human- and machine-readable report:
 
 ```
 === Validation Report: 2 errors, 1 warning ===
-❌ ERROR | login_btn → onTap | [V002] Value 'repositoryId' is missing
+ERROR | component id: 'app', type: 'module' → component id: 'login_btn', type: 'button' → action id: 'login' | [V002] property: 'input' | Value 'repositoryId' is missing
 ...
 ```
 
@@ -172,6 +174,10 @@ let icon:  String? = render.icon
 ```
 
 Being `Identifiable` and `Equatable` makes it safe to use in `ForEach` and SwiftUI diffing.
+
+A render is shown in one place at a time; a second view of the same module needs its own render.
+
+`render.diagnostics` holds the findings that did not stop the module from rendering, as structured issues with `code`, `severity`, `path` and `message`.
 
 ---
 
@@ -437,7 +443,7 @@ StemJSON modules are a declarative tree: every component has a `type`, optional 
   "context": { "_label": "Email", "_text": "${email}" } }
 ```
 
-For the full component catalogue, value syntax, style options, and action types see the [**StemJSON v1.1 Specification**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.1.md).
+For the full component catalogue, value syntax, style options, and action types see the [**StemJSON v1.2 Specification**](https://github.com/vkrychun/StemJSON/blob/main/spec/v1.2.md).
 
 ### Schema versioning
 
